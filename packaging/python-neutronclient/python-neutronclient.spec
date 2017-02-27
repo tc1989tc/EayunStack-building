@@ -2,7 +2,7 @@
 
 Name:       python-neutronclient
 Version:    2.3.9
-Release:    6%{?dist_eayunstack}
+Release:    7%{?dist_eayunstack}
 Summary:    Python API and CLI for OpenStack Neutron
 
 Group:      Development/Languages
@@ -19,6 +19,7 @@ Patch0006: 0006-Add-Portmapping-support.patch
 Patch0007: 0007-Add-pptp-vpn-credential-support.patch
 Patch0008: 0008-neutron-CLI-Add-support-lbaas-add-remove-command.patch
 Patch0009: 0009-VPNaaS-deprecate-two-dpd-actions.patch
+Patch0010: 0010-Add-lbaas-active-backup-option-for-neutronclient.patch
 
 
 BuildArch:  noarch
@@ -52,6 +53,7 @@ Neutron's API.
 %patch0007 -p1
 %patch0008 -p1
 %patch0009 -p1
+%patch0010 -p1
 
 # We provide version like this in order to remove runtime dep on pbr.
 sed -i s/REDHATNEUTRONCLIENTVERSION/%{version}/ neutronclient/version.py
@@ -81,6 +83,9 @@ rm -rf %{buildroot}%{python_sitelib}/neutronclient/tests
 %{_sysconfdir}/bash_completion.d
 
 %changelog
+* Mon Feb 27 2017 Cheng Tang <cheng.tang@eayun.com> 2.3.8-7.eayunstack.1.1
+- add 0010-Add-lbaas-active-backup-option-for-neutronclient.patch (redmine#9260)
+
 * Wed Nov 02 2016 Xu Meihong <meihong.xu@eayun.com> 2.3.9-6.eayunstack.1.1
 - add 0009-VPNaaS-deprecate-two-dpd-actions.patch (redmine#8874)
 
